@@ -104,16 +104,35 @@
     }
 
     .hero {
+      position: relative;
+      overflow: hidden;
       min-height: 600px;
       padding: 86px 0;
       border-bottom: 1px solid var(--ink);
-      background:
-        linear-gradient(90deg, rgba(38, 22, 14, .94) 0%, rgba(38, 22, 14, .76) 38%, rgba(38, 22, 14, .2) 68%, rgba(38, 22, 14, .04) 100%),
-        url("images/hero3.png") center / cover no-repeat;
+      background: #17110d;
       color: var(--warm-cream);
     }
 
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(90deg, rgba(38, 22, 14, .94) 0%, rgba(38, 22, 14, .76) 38%, rgba(38, 22, 14, .2) 68%, rgba(38, 22, 14, .04) 100%);
+    }
+
     .hero-grid {
+      position: relative;
+      z-index: 2;
       display: grid;
       grid-template-columns: minmax(0, 650px);
       align-items: center;
@@ -126,6 +145,109 @@
       letter-spacing: .08em;
       text-transform: uppercase;
       color: var(--trail-gold);
+    }
+
+    /* Hero reveal Option D: a rising-sun label with a fast, clean two-way headline entrance. */
+    .hero-reveal-mask {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-reveal-mask > span {
+      display: block;
+      opacity: 0;
+      transform: translateX(-112%);
+      animation: hero-reveal-trail .82s cubic-bezier(.16, 1, .3, 1) forwards;
+    }
+
+    .eyebrow.hero-reveal-mask > span {
+      opacity: 1;
+      transform: translateY(105%) scaleX(.6);
+      transform-origin: center bottom;
+      animation: hero-reveal-sunrise .7s cubic-bezier(.16, 1, .3, 1) .08s forwards;
+    }
+
+    .hero h1 {
+      overflow: visible;
+    }
+
+    .hero h1 .hero-reveal-mask:nth-child(1) > span { animation-delay: .22s; }
+    .hero h1 .hero-reveal-mask:nth-child(2) > span {
+      transform: translateX(112%);
+      animation-delay: .38s;
+    }
+    .hero h1 .hero-reveal-mask:nth-child(3) > span {
+      transform: translateY(115%);
+      animation: hero-reveal-rise .82s cubic-bezier(.16, 1, .3, 1) 1.3s forwards;
+    }
+
+    .hero-copy.hero-reveal-mask > span {
+      transform: translateX(-32px);
+      animation-delay: 2.25s;
+    }
+
+    .button-row.hero-reveal-mask > span {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      transform: translateX(-24px);
+      animation-delay: 2.38s;
+    }
+
+    @keyframes hero-reveal-trail {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes hero-reveal-sunrise {
+      to { transform: translateY(0) scaleX(1); }
+    }
+
+    @keyframes hero-reveal-rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .flip-word {
+      display: inline-flex;
+    }
+
+    .flip-letter {
+      display: inline-grid;
+      vertical-align: baseline;
+      transform-style: preserve-3d;
+      animation: hero-turn-letter .56s cubic-bezier(.3, .9, .25, 1) forwards;
+      animation-delay: var(--flip-delay);
+    }
+
+    .flip-letter > span {
+      grid-area: 1 / 1;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .flip-letter .flip-front {
+      transform: rotateY(180deg);
+    }
+
+    @keyframes hero-turn-letter {
+      to { transform: rotateY(180deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-reveal-mask > span {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+
+      .flip-letter { animation: none; }
+      .flip-letter .flip-back { display: none; }
+      .flip-letter .flip-front { transform: none; }
     }
 
     h1 {
@@ -539,11 +661,7 @@
       .brand,
       footer strong { font-size: 16px; }
       .hero, section { padding: 52px 0; }
-      .hero {
-        background:
-          linear-gradient(90deg, rgba(38, 22, 14, .92) 0%, rgba(38, 22, 14, .7) 100%),
-          url("images/hero3.png") 62% center / cover no-repeat;
-      }
+      .hero::before { background: linear-gradient(90deg, rgba(38, 22, 14, .92) 0%, rgba(38, 22, 14, .7) 100%); }
       .hero-grid { min-height: 480px; }
       .booking-benefits { grid-template-columns: 1fr; gap: 22px; }
       .booking-benefit,
@@ -576,17 +694,19 @@
 
     <main>
       <section class="hero" id="top">
+        <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+          <source src="images/walk-through-woods.mp4" type="video/mp4" />
+        </video>
         <div class="container hero-grid">
           <div>
-            <div class="eyebrow">Enterprise AI enablement</div>
-            <h1>Help your workforce turn the corner on <span class="accent">what’s possible.</span></h1>
-            <p class="hero-copy">
-              Training sessions, executive strategy sessions, AI Champions programs, and collaborative hackathons for your organization.
-            </p>
-            <div class="button-row">
-              <a class="button primary" href="#booking">Book a conversation</a>
-              <a class="button" href="#programs">Explore programs</a>
-            </div>
+            <div class="eyebrow hero-reveal-mask"><span>Enterprise AI enablement</span></div>
+            <h1>
+              <span class="hero-reveal-mask"><span>Help your workforce</span></span>
+              <span class="hero-reveal-mask"><span>turn the corner on</span></span>
+              <span class="hero-reveal-mask"><span class="accent">what’s possible.</span></span>
+            </h1>
+            <p class="hero-copy hero-reveal-mask"><span>Training sessions, executive strategy sessions, AI Champions programs, and collaborative hackathons for your organization.</span></p>
+            <div class="button-row hero-reveal-mask"><span><a class="button primary" href="#booking">Book a conversation</a><a class="button" href="#programs">Explore programs</a></span></div>
           </div>
         </div>
       </section>
@@ -702,7 +822,7 @@
 
           <div class="person-row">
             <div class="portrait-placeholder">
-              <img class="portrait-photo" src="images/ray.JPG" alt="Ray Timmons" />
+              <img class="portrait-photo" src="images/ray.jpeg" alt="Ray Timmons" />
             </div>
             <div class="person-copy">
               <h3>Ray Timmons</h3>
