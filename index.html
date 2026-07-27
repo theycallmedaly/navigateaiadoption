@@ -80,9 +80,33 @@
     }
 
     .brand {
-      font-size: 19px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-weight: 700;
-      letter-spacing: .1em;
+      line-height: 1;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-primary {
+      font-size: 19px;
+      letter-spacing: .08em;
+    }
+
+    .brand-secondary {
+      margin-top: 6px;
+      font-size: 13px;
+      letter-spacing: .28em;
     }
 
     nav {
@@ -658,8 +682,10 @@
 
     @media (max-width: 520px) {
       .container { width: min(calc(100% - 28px), var(--max)); }
-      .brand,
+      .brand-primary,
       footer strong { font-size: 16px; }
+      .brand-secondary { font-size: 11px; }
+      .brand-logo { width: 33px; height: 33px; }
       .hero, section { padding: 52px 0; }
       .hero::before { background: linear-gradient(90deg, rgba(38, 22, 14, .92) 0%, rgba(38, 22, 14, .7) 100%); }
       .hero-grid { min-height: 480px; }
@@ -682,10 +708,16 @@
   <div class="site-shell">
     <header>
       <div class="container topbar">
-        <div class="brand">NAVIGATE AI ADOPTION</div>
+        <div class="brand">
+          <img class="brand-logo" src="images/navigate-logo.png" alt="" aria-hidden="true" />
+          <span class="brand-text">
+            <span class="brand-primary">NAVIGATE</span>
+            <span class="brand-secondary">AI ADOPTION</span>
+          </span>
+        </div>
         <nav aria-label="Primary navigation">
-          <a href="#about">About</a>
           <a href="#programs">Programs</a>
+          <a href="#about">About</a>
           <a href="#booking">Booking</a>
           <a href="#faq">FAQ</a>
         </nav>
@@ -699,13 +731,12 @@
         </video>
         <div class="container hero-grid">
           <div>
-            <div class="eyebrow hero-reveal-mask"><span>Enterprise AI enablement</span></div>
             <h1>
               <span class="hero-reveal-mask"><span>Help your workforce</span></span>
               <span class="hero-reveal-mask"><span>turn the corner on</span></span>
               <span class="hero-reveal-mask"><span class="accent">what’s possible.</span></span>
             </h1>
-            <p class="hero-copy hero-reveal-mask"><span>Training sessions, executive strategy sessions, AI Champions programs, and collaborative hackathons for your organization.</span></p>
+            <p class="hero-copy hero-reveal-mask"><span>Enterprise AI enablement for your entire organization: workforce training, executive strategy, AI Champions programs, and collaborative hackathons.</span></p>
             <div class="button-row hero-reveal-mask"><span><a class="button primary" href="#booking">Book a conversation</a><a class="button" href="#programs">Explore programs</a></span></div>
           </div>
         </div>
