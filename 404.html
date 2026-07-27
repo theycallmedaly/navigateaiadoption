@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Page Not Found — Navigate AI Adoption</title>
+  <link rel="icon" type="image/png" href="/images/navigate-logo.png" />
+  <style>
+    :root {
+      --park-green: #10251d;
+      --warm-cream: #f4ecd8;
+      --trail-gold: #e6a91f;
+      --deep-brown: #26160e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(230, 169, 31, .12), transparent 28rem),
+        linear-gradient(145deg, #10251d 0%, #183126 55%, #0b1c16 100%);
+      color: var(--warm-cream);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    .page {
+      width: min(calc(100% - 48px), 1180px);
+      min-height: 100vh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(244, 236, 216, .24);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: inherit;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-primary {
+      font-size: 19px;
+      letter-spacing: .08em;
+    }
+
+    .brand-secondary {
+      margin-top: 6px;
+      font-size: 13px;
+      letter-spacing: .28em;
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 72px 0 96px;
+    }
+
+    .content {
+      width: min(100%, 760px);
+    }
+
+    .error-code {
+      margin: 0 0 18px;
+      color: var(--trail-gold);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 500;
+      letter-spacing: -.04em;
+      line-height: .98;
+    }
+
+    .message {
+      max-width: 580px;
+      margin: 28px 0 0;
+      color: rgba(244, 236, 216, .82);
+      font-size: clamp(18px, 2.5vw, 23px);
+    }
+
+    .actions {
+      margin-top: 38px;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+
+    .primary-action {
+      display: inline-flex;
+      min-height: 48px;
+      padding: 12px 22px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--trail-gold);
+      border-radius: 4px;
+      background: var(--trail-gold);
+      color: var(--deep-brown);
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .2s ease, background-color .2s ease;
+    }
+
+    .primary-action:hover {
+      background: #f0b72d;
+      transform: translateY(-2px);
+    }
+
+    .secondary-action {
+      border-bottom: 1px solid rgba(244, 236, 216, .55);
+      color: var(--warm-cream);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .primary-action:focus-visible,
+    .secondary-action:focus-visible,
+    .brand:focus-visible {
+      outline: 3px solid var(--warm-cream);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(calc(100% - 28px), 1180px);
+      }
+
+      .brand img {
+        width: 33px;
+        height: 33px;
+      }
+
+      .brand-primary {
+        font-size: 16px;
+      }
+
+      .brand-secondary {
+        font-size: 11px;
+      }
+
+      main {
+        place-items: start;
+        padding-top: 84px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Navigate AI Adoption home">
+        <img src="/images/navigate-logo.png" alt="" aria-hidden="true" />
+        <span class="brand-text">
+          <span class="brand-primary">NAVIGATE</span>
+          <span class="brand-secondary">AI ADOPTION</span>
+        </span>
+      </a>
+    </header>
+
+    <main>
+      <div class="content">
+        <p class="error-code">404 · Route not found</p>
+        <h1>Looks like we wandered off the trail.</h1>
+        <p class="message">The page you were looking for isn’t marked on this route.</p>
+        <div class="actions">
+          <a class="primary-action" href="/">Return to the trail</a>
+          <a class="secondary-action" id="go-back" href="/">Go back</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("go-back").addEventListener("click", function (event) {
+      if (window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
+  </script>
+</body>
+</html>
