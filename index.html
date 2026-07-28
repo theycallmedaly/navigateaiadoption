@@ -628,11 +628,24 @@
       box-shadow: 0 22px 48px rgba(16, 37, 29, .12);
     }
 
-    .calendly-frame {
+    .calendar-instruction {
+      margin: 0 0 14px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .mobile-calendar-fallback {
+      display: none;
+      margin: 14px 0 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--park-green);
+    }
+
+    .calendly-inline-widget {
       display: block;
       width: 100%;
       min-height: 700px;
-      border: 0;
     }
 
     .faq-list {
@@ -675,6 +688,7 @@
       .booking-layout {
         grid-template-columns: 1fr;
       }
+      .mobile-calendar-fallback { display: inline-block; }
       .hero { min-height: 0; }
       .card-grid { grid-template-columns: 1fr; }
       .person-row { grid-template-columns: 120px 1fr; }
@@ -901,10 +915,16 @@
                   <p>A clear path forward</p>
                 </div>
               </div>
-              <a class="button primary" href="https://calendly.com/theycallmedaly/30min" target="_blank" rel="noopener noreferrer">Open Calendly</a>
             </div>
-            <div class="booking-calendar">
-              <iframe class="calendly-frame" src="https://calendly.com/theycallmedaly/30min?hide_gdpr_banner=1" title="Schedule a 30-minute discovery call" loading="lazy"></iframe>
+            <div class="booking-scheduler">
+              <p class="calendar-instruction">Choose a date for a 30-minute conversation with us.</p>
+              <div class="booking-calendar">
+                <!-- Calendly inline widget begin -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/navigateaiadoption/30min?hide_event_type_details=1&amp;hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                <!-- Calendly inline widget end -->
+              </div>
+              <a class="mobile-calendar-fallback" href="https://calendly.com/navigateaiadoption/30min" target="_blank" rel="noopener noreferrer">Having trouble with the calendar? Open the scheduling page.</a>
             </div>
           </div>
         </div>
