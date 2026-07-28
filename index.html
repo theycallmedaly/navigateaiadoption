@@ -629,9 +629,17 @@
     }
 
     .calendar-instruction {
-      margin: 0 0 14px;
       font-size: 18px;
       font-weight: 700;
+    }
+
+    .desktop-calendar-instruction {
+      margin: 28px 0 0;
+    }
+
+    .mobile-calendar-instruction {
+      display: none;
+      margin: 0 0 14px;
     }
 
     .mobile-calendar-fallback {
@@ -688,6 +696,8 @@
       .booking-layout {
         grid-template-columns: 1fr;
       }
+      .desktop-calendar-instruction { display: none; }
+      .mobile-calendar-instruction { display: block; }
       .mobile-calendar-fallback { display: inline-block; }
       .hero { min-height: 0; }
       .card-grid { grid-template-columns: 1fr; }
@@ -915,9 +925,10 @@
                   <p>A clear path forward</p>
                 </div>
               </div>
+              <p class="calendar-instruction desktop-calendar-instruction">Choose a date for a 30-minute conversation with us.</p>
             </div>
             <div class="booking-scheduler">
-              <p class="calendar-instruction">Choose a date for a 30-minute conversation with us.</p>
+              <p class="calendar-instruction mobile-calendar-instruction">Choose a date for a 30-minute conversation with us.</p>
               <div class="booking-calendar">
                 <!-- Calendly inline widget begin -->
                 <div class="calendly-inline-widget" data-url="https://calendly.com/navigateaiadoption/30min?hide_event_type_details=1&amp;hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
